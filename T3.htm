@@ -1,0 +1,210 @@
+<html>
+<head>
+<style>
+body {
+  background-color: black;
+}
+
+.star {
+  font-size: 300%;
+  color: yellow;
+}
+
+.heart {
+  font-size: 500%;
+  color: red;
+}
+
+.button {
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Other button styles here */
+}
+
+.countdown {
+  color: white;
+  font-size: 24px;
+}
+</style>
+</head>
+<body>
+<button onclick="myBrain(); removeHearts()">My Brain (in French)</button>
+<p class="brain" style="display:none;">Paragraph 1</p>
+<p class="brain" style="display:none;">Paragraph 2</p>
+<p class="brain" style="display:none;">Paragraph 3</p>
+<button onclick="myBrain2(); removeHearts()">My Brain</button>
+<p class="brain2" style="display:none;">Paragraph 1</p>
+<p class="brain2" style="display:none;">Paragraph 2</p>
+<p class="brain2" style="display:none;">Paragraph 3</p>
+
+<div class="countdown">Monthaversary: [insert countdown code here]</div>
+
+<button class="button" onclick="myFunction(); addHearts()">Press Me If You Are Overthinking</button>
+
+<script>
+function myBrain() {
+  var paragraphs = document.getElementsByClassName("brain");
+  var foundDisplayed = false;
+  for (var i = 0; i < paragraphs.length; i++) {
+    var x = paragraphs[i];
+    if (x.style.display === "block") {
+      foundDisplayed = true;
+      x.style.display = "none";
+      if (i < paragraphs.length - 1) {
+        paragraphs[i + 1].style.display = "block";
+      } else {
+        paragraphs[0].style.display = "block";
+      }
+      break;
+    }
+  }
+  if (!foundDisplayed) {
+    paragraphs[0].style.display = "block";
+  }
+}
+function myBrain2() {
+  var paragraphs = document.getElementsByClassName("brain2");
+  var foundDisplayed = false;
+  for (var i = 0; i < paragraphs.length; i++) {
+    var x = paragraphs[i];
+    if (x.style.display === "block") {
+      foundDisplayed = true;
+      x.style.display = "none";
+      if (i < paragraphs.length - 1) {
+        paragraphs[i + 1].style.display = "block";
+      } else {
+        paragraphs[0].style.display = "block";
+      }
+      break;
+    }
+  }
+  if (!foundDisplayed) {
+    paragraphs[0].style.display = "block";
+  }
+}
+
+function myFunction() {
+  document.body.style.backgroundColor = "white";
+  document.getElementsByClassName("button")[0].innerHTML = "I love you";
+  var stars = document.getElementsByClassName("star");
+  while (stars[0]) {
+    stars[0].parentNode.removeChild(stars[0]);
+  }
+  var hearts = "";
+  for (var i = 0; i < 50; i++) {
+    hearts += '<p style="position: absolute; top: ' + Math.floor(Math.random() * 100) + 'vh; left: ' + Math.floor(Math.random() * 100) + 'vw;"><span class="heart">&hearts;</span></p>';
+  }
+  document.body.innerHTML += hearts;
+}
+
+function addHearts() {
+  var container = document.getElementById("container");
+  for (var i = 0; i < 25; i++) {
+    var heart = document.createElement("span");
+    heart.innerHTML = "&hearts;";
+    heart.style.fontSize = "300%";
+    heart.style.color = "red";
+    heart.style.position = "absolute";
+    heart.style.top = Math.random() * 90 + "%";
+    heart.style.left = Math.random() * 90 + "%";
+    container.appendChild(heart);
+  }
+}
+function removeHearts() {
+  var hearts = document.getElementsByClassName("heart");
+  while (hearts.length > 0) {
+    hearts[0].parentNode.removeChild(hearts[0]);
+  }
+}
+
+function myFunction() {
+  document.body.style.backgroundColor = "white";
+  document.getElementsByClassName("button")[0].innerHTML = "I love you";
+  var stars = document.getElementsByClassName("star");
+  while (stars[0]) {
+    stars[0].parentNode.removeChild(stars[0]);
+  }
+  var heart = document.createElement("p");
+  heart.innerHTML = '<span class="heart">&hearts;</span>';
+  document.body.appendChild(heart);
+}
+</script>
+<script>
+
+function countdown() {
+  var currentDate = new Date();
+  var currentMonth = currentDate.getMonth();
+  var currentDay = currentDate.getDate();
+  var currentHour = currentDate.getHours();
+  var currentMinute = currentDate.getMinutes();
+  var currentSecond = currentDate.getSeconds();
+  var next27thMonth = currentMonth + 1;
+  if (currentDay > 27) {
+    next27thMonth += 1;
+  }
+  if (next27thMonth > 11) {
+    next27thMonth = 0;
+  }
+  var next27th = new Date(currentDate.getFullYear(), next27thMonth, 27);
+  var timeDifference = next27th.getTime() - currentDate.getTime();
+  var secondsUntilNext27th = Math.floor(timeDifference / 1000);
+  var minutesUntilNext27th = Math.floor(secondsUntilNext27th / 60);
+  var hoursUntilNext27th = Math.floor(minutesUntilNext27th / 60);
+  var daysUntilNext27th = Math.floor(hoursUntilNext27th / 24);
+  secondsUntilNext27th %= 60;
+  minutesUntilNext27th %= 60;
+  hoursUntilNext27th %= 24;
+  document.getElementsByClassName("countdown")[0].innerHTML = "Monthaversary: " + daysUntilNext27th + " days " + hoursUntilNext27th + " hours " + minutesUntilNext27th + " minutes " + secondsUntilNext27th + " seconds";
+}
+
+countdown();
+setInterval(countdown, 1000);
+</script>
+<script>
+var maxTries = 50;
+for (var i = 0; i < 50; i++) {
+  var star = document.createElement("span");
+  star.innerHTML = "&starf;";
+  star.className = "star";
+  star.style.position = "absolute";
+
+  // Generate random position for star
+  var tries = 0;
+  do {
+    star.style.top = Math.floor(Math.random() * 100) + "vh";
+    star.style.left = Math.floor(Math.random() * 100) + "vw";
+    tries++;
+  } while (isOverlapping(star) && tries < maxTries);
+
+  document.body.appendChild(star);
+}
+
+function isOverlapping(element) {
+  var stars = document.getElementsByClassName("star");
+  for (var i = 0; i < stars.length; i++) {
+    var rect1 = element.getBoundingClientRect();
+    var rect2 = stars[i].getBoundingClientRect();
+    if (rect1.top == rect2.top && rect1.left == rect2.left) {
+      continue;
+    }
+    if (rect1.top < rect2.bottom && rect1.right > rect2.left && rect1.bottom > rect2.top && rect1.left < rect2.right) {
+      return true;
+    }
+  }
+  return false;
+}
+</script>
+</body>
+</html>
